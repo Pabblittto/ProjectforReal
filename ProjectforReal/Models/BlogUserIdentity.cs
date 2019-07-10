@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace ProjectforReal.Models
 {
-    public class BlogUserIdentity: IdentityUser<int>
-    {
-        public int? BlogId { get; set; }
+    public class BlogUserIdentity: IdentityUser
+    { 
         public Blog Blog { get; set; }
+
 
 
     }

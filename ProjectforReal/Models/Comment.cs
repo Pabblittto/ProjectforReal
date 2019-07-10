@@ -7,24 +7,23 @@ using System.Threading.Tasks;
 
 namespace ProjectforReal.Models
 {
-    public class Blog
+    public class Comment
     {
         [Key]
-        public int BlogId { get; set; }
-
-        [Required]
-        [MaxLength(200)]
-        public string BlogName { get; set; }
+        public int CommentId { get; set; }
 
         [Column(TypeName = "Date")]
-        public DateTime DateOfCreated { get; set; }
+        public DateTime DateOfComment { get; set; }
 
-        [MaxLength(1000)]
-        public string Description { get; set; }
+        [MaxLength(400)]
+        public string Content { get; set; }
 
         [Required]
         public BlogUserIdentity Owner { get; set; }
 
-        public ICollection<Post> Posts { get; set; }
+        [Required]
+        public Post ToPost{get;set;}
+
+        public ICollection<Comment> Answers { get; set; }//list of comments which ansewred to this comment
     }
 }

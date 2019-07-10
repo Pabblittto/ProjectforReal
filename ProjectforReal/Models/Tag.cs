@@ -10,6 +10,7 @@ namespace ProjectforReal.Models
     {
         [Key]
         public int TagId { get; set; }
+
         [MaxLength(200)]
         [Required]
         public string Name { get; set; }
