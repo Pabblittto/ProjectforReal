@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Identity;
+using ProjectforReal.Models;
 
 namespace ProjectforReal
 {
@@ -31,6 +33,12 @@ namespace ProjectforReal
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddIdentity<BlogUserIdentity, IdentityRole>(options =>
+             {
+                 options.Password.RequireDigit = false;
+                 options.Password.RequiredUniqueChars = 0;
+                 options.Password.RequireNonAlphanumeric = false;
+             }).AddEntityFrameworkStores<Models.AppContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
