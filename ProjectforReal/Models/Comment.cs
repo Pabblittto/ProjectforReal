@@ -21,8 +21,8 @@ namespace ProjectforReal.Models
         [Required]
         public BlogUserIdentity Owner { get; set; }
 
-        [Required]
-        public Post ToPost{get;set;}
+        public int PostId { get; set; }
+        public Post Post{get;set;}
 
         public ICollection<Comment> Answers { get; set; }//list of comments which ansewred to this comment
     }

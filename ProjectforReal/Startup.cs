@@ -11,6 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
 using ProjectforReal.Models;
+using Microsoft.EntityFrameworkCore;
+using Pomelo.EntityFrameworkCore.MySql;
 
 namespace ProjectforReal
 {
@@ -33,6 +35,10 @@ namespace ProjectforReal
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddDbContextPool<Models.AppContext>(options =>
+            options.UseMySql(Configuration.GetConnectionString("DataBase"))
+            );
+            
             services.AddIdentity<BlogUserIdentity, IdentityRole>(options =>
              {
                  options.Password.RequireDigit = false;
@@ -60,6 +66,7 @@ namespace ProjectforReal
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {

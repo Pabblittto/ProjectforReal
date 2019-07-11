@@ -9,13 +9,14 @@ namespace ProjectforReal.Models
 {
     public class Post
     {
+
         [Key]
         public int PostId { get; set; }
 
         [Column(TypeName ="Date")]
         public DateTime DateOfPost { get; set; }
 
-        [Required]
+        public int BlogId { get; set; }
         public Blog Blog { get; set; }
 
         [Required]
@@ -26,7 +27,7 @@ namespace ProjectforReal.Models
 
         public string ContentTwo { get; set; }
 
-        public ICollection<Tag> Tags { get; set; }
+        public ICollection<PostTag> PostTags { get; set; }
 
         public ICollection<Comment> Comments { get; set; }
     }

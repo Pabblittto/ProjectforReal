@@ -8,9 +8,8 @@ namespace ProjectforReal.Models
 {
     public class BlogUserIdentity: IdentityUser
     { 
+        public int BlogId { get; set; }
         public Blog Blog { get; set; }
-
-
 
     }
 }

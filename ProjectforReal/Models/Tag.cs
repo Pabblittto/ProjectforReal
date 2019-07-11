@@ -14,8 +14,10 @@ namespace ProjectforReal.Models
         [MaxLength(200)]
         [Required]
         public string Name { get; set; }
-        public int? OwnerId { get; set; }// admin's Tags can not be deleted
 
-        public ICollection<Post> Posts { get; set; }
+        //public int OwnerId { get; set; }// admin's Tags can not be deleted
+        public BlogUserIdentity Owner { get; set; }
+
+        public ICollection<PostTag> PostTags { get; set; }
     }
 }

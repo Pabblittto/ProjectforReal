@@ -22,8 +22,7 @@ namespace ProjectforReal.Models
         [MaxLength(1000)]
         public string Description { get; set; }
 
-        [Required]
-        public BlogUserIdentity Owner { get; set; }
+        public BlogUserIdentity BlogUserIdentity { get; set; }
 
         public ICollection<Post> Posts { get; set; }
     }
