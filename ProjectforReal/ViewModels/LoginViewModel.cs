@@ -14,6 +14,8 @@ namespace ProjectforReal.ViewModels
         [DataType(DataType.Password)]
         public string Password { get; set; }
         
+        [DataType(DataType.Url)]
+        public string ReturnUrl { get; set; }
 
     }
 }

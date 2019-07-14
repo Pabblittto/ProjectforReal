@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProjectforReal.Models
 {
-    public class AppContext : DbContext
+    public class AppContext : IdentityDbContext
     {
         public AppContext(DbContextOptions options) :base(options)
         {
@@ -14,6 +15,8 @@ namespace ProjectforReal.Models
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            base.OnModelCreating(builder);
+
             builder.Entity<PostTag>().HasKey(ob =>new { ob.PostId, ob.TagId });
 
             builder.Entity<PostTag>()
@@ -26,9 +29,15 @@ namespace ProjectforReal.Models
                 .WithMany(ob => ob.PostTags)// tu że ten wspomniany tag ma wiele połączeń 
                 .HasForeignKey(PostTagobj => PostTagobj.TagId);// i łączy się z PostTagiem za pomocą pola w PostTagu
 
+            builder.Entity<BlogUserIdentity>()
+                .HasOne<Blog>(user => user.Blog)
+                .WithOne(ob => ob.BlogUserIdentity)
+                .OnDelete(DeleteBehavior.Cascade);
+                
+
         }
 
-
+        
 
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Blog> Blogs { get; set; }

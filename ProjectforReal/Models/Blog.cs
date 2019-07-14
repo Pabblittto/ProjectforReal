@@ -22,6 +22,7 @@ namespace ProjectforReal.Models
         [MaxLength(1000)]
         public string Description { get; set; }
 
+        [ForeignKey("User")]
         public BlogUserIdentity BlogUserIdentity { get; set; }
 
         public ICollection<Post> Posts { get; set; }

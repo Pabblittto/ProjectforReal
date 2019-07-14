@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ProjectforReal.Models
 {
-    public class BlogUserIdentity: IdentityUser
+    public class BlogUserIdentity: IdentityUser<string>
     { 
-        public int BlogId { get; set; }
+        //public int BlogId { get; set; }
         public Blog Blog { get; set; }
 
     }

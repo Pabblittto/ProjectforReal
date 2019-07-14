@@ -38,13 +38,20 @@ namespace ProjectforReal
             services.AddDbContextPool<Models.AppContext>(options =>
             options.UseMySql(Configuration.GetConnectionString("DataBase"))
             );
-            
+
             services.AddIdentity<BlogUserIdentity, IdentityRole>(options =>
              {
+                
                  options.Password.RequireDigit = false;
                  options.Password.RequiredUniqueChars = 0;
                  options.Password.RequireNonAlphanumeric = false;
              }).AddEntityFrameworkStores<Models.AppContext>();
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = new PathString("/Home/Info");
+
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -67,6 +74,7 @@ namespace ProjectforReal
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
+
 
             app.UseMvc(routes =>
             {

@@ -2,6 +2,7 @@
 
 @{ 
     var ErrorList = TempData["errors"] as IEnumerable<String>;
+    var InfoList = TempData["info"] as IEnumerable<String>;
 }
 
 
@@ -39,11 +40,23 @@
             @foreach (var item in ErrorList)//present all errors
             {
                 <div class="alert alert-danger text-center">
-                   <h6>@item</h6>
+                    <h6>@item</h6>
                 </div>
             }
             TempData.Remove("errors");
         }
+
+        @if (InfoList != null)
+        {
+            @foreach (var item in InfoList)//present all errors
+            {
+                <div class="alert alert-info text-center">
+                    <h6>@item</h6>
+                </div>
+            }
+            TempData.Remove("info");
+        }
+
     </header>
     <div class="">
         <partial name="_CookieConsentPartial" />
@@ -51,41 +64,62 @@
             <main role="main" class="pb-3 col-8 offset-2">
                 @RenderBody()
             </main>
-            <div class="col-2">
-                @if (signInManager.IsSignedIn(User))//if sb is signed in - display info and edit links
-                {
+                <div class="col-2">
+                    <div class="border-sm shadow rounded ">
+                        @if (signInManager.IsSignedIn(User))//if sb is signed in - display info and edit links
+                        {
+                        <div class="text-center">
+                            <img src="~/images/pingwin2.png" class="profile-MainSite" />
+                            <p>@User.Identity.Name</p>
+                        </div>
+                        
+                        <div class="row text-center">
+                            <div class="col">
+                                <a href="#">Edit profile</a>
+                            </div>
+                            <div class="col">
+                                <form>
+                                    <input type="hidden" value="@Context.Request.PathBase.ToString()" name="Url" />
+                                    <button type="submit" class="btn btn-link" >Log out</button>
+                                </form>
+                            </div>
 
-                }
-                else // if nobody is loged in- display login form 
-                {
-                <div class="pl-1 pr-1">
-                    <div class="text-center ">
-                        <h7><strong>Log In</strong></h7>
-                    </div>
-                    <div>
-                        <form method="post" asp-action="Login" asp-controller="Home">
-                            <div class="form-group">
-                                <input type="text" name="Login" class="form-control input-transparent border-bottom shadow-sm" placeholder="Login" />
+                        </div>
+
+
+                        }
+                        else // if nobody is loged in- display login form
+                        {
+                            <div class="pl-1 pr-1">
+                                <div class="text-center ">
+                                    <h7><strong>Log In</strong></h7>
+                                </div>
+                                <div>
+                                    <form method="post" asp-action="Login" asp-controller="Home">
+                                        <div class="form-group">
+                                            <input type="text" name="Login" class="form-control input-transparent border-bottom shadow-sm" placeholder="Login" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" name="Password" class="form-control input-transparent border-bottom shadow-sm" placeholder="Password" />
+                                        </div>
+                                        <input type="hidden" value="@Context.Request.Path.ToString()" name="Url" />
+                                        <button class="btn btn-outline-secondary btn-block" type="submit">Log In</button>
+                                    </form>
+                                </div>
+                                <small class="text-muted">Don't have an account? <a asp-action="Registration" asp-controller="Home">Sign Up</a></small>
                             </div>
-                            <div class="form-group">
-                                <input type="password" name="Password" class="form-control input-transparent border-bottom shadow-sm" placeholder="Password" />
-                            </div>
-                            <input type="hidden" value="@Context.Request.Path.ToString()" name="Url" />
-                            <button class="btn btn-outline-secondary btn-block" type="submit">Log In</button>
-                        </form>
-                    </div>
-                </div>
-                }
+                        }
+                 </div>
                 </div>
             </div>
         </div>
-
-        <footer class="border-top footer text-muted">
+    <div class="mt-5">
+        <footer class="border-top footer text-muted ">
             <div class="container">
                 &copy; 2019 - Blog
             </div>
         </footer>
-
+    </div>
         <environment include="Development">
             <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         </environment>

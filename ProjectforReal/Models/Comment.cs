@@ -19,9 +19,11 @@ namespace ProjectforReal.Models
         public string Content { get; set; }
 
         [Required]
+        [ForeignKey("OwnerId")]
         public BlogUserIdentity Owner { get; set; }
 
-        public int PostId { get; set; }
+        [Required]
+        [ForeignKey("PostId")]
         public Post Post{get;set;}
 
         public ICollection<Comment> Answers { get; set; }//list of comments which ansewred to this comment

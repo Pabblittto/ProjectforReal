@@ -1,6 +1,22 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+.profile-MainSite{
+    border: 1px solid lightgray;
+    width: inherit;
+}
+
+
+
+textarea{
+    resize:none !important;
+}
+
+.border-sm{
+    border:1px solid lightgray;
+}
+
+
 .input-transparent{
     background-color: transparent !important;
     border:none;

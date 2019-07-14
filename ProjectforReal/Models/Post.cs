@@ -16,7 +16,7 @@ namespace ProjectforReal.Models
         [Column(TypeName ="Date")]
         public DateTime DateOfPost { get; set; }
 
-        public int BlogId { get; set; }
+        [ForeignKey("BlogId")]
         public Blog Blog { get; set; }
 
         [Required]

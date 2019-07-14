@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectforReal.Models;
 
 namespace ProjectforReal.Migrations
 {
     [DbContext(typeof(Models.AppContext))]
-    partial class AppContextModelSnapshot : ModelSnapshot
+    [Migration("20190713204712_UltimateMigrtaion")]
+    partial class UltimateMigrtaion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
